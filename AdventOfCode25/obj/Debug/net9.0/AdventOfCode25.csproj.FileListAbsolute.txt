@@ -12,3 +12,4 @@ C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9
 C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.pdb
 C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.genruntimeconfig.cache
 C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\ref\AdventOfCode25.dll
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.sourcelink.json

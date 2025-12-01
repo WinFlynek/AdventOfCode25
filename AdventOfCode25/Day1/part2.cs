@@ -20,10 +20,7 @@ public class Day1_Part2
                 }
                 startPoint -= numbers[row];
                 while (startPoint <= 0){
-                    if (startPoint < 0)
-                    {
-                        passwordNumber++;
-                    }
+                    passwordNumber++;
                     startPoint += 100;
                 }
             }
@@ -34,20 +31,10 @@ public class Day1_Part2
                     startPoint = 0;
                 }
                 startPoint += numbers[row];
-
                 while (startPoint >= 100){
-                    if (startPoint > 100)
-                    {
-                        passwordNumber++;
-                    }
+                    passwordNumber++;
                     startPoint -= 100;
                 }
-            }
-
-            
-            if(startPoint == 0 || startPoint == 100)
-            {
-                passwordNumber++;
             }
         }
        Console.WriteLine($"Day1_Part2: {passwordNumber}");
