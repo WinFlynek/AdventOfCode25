@@ -1,0 +1,14 @@
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\bin\Debug\net9.0\AdventOfCode25.exe
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\bin\Debug\net9.0\AdventOfCode25.deps.json
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\bin\Debug\net9.0\AdventOfCode25.runtimeconfig.json
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\bin\Debug\net9.0\AdventOfCode25.dll
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\bin\Debug\net9.0\AdventOfCode25.pdb
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.AssemblyInfoInputs.cache
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.AssemblyInfo.cs
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.csproj.CoreCompileInputs.cache
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.dll
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\refint\AdventOfCode25.dll
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.pdb
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\AdventOfCode25.genruntimeconfig.cache
+C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\obj\Debug\net9.0\ref\AdventOfCode25.dll
