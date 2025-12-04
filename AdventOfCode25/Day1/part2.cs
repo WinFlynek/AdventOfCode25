@@ -1,5 +1,5 @@
 ﻿
-namespace AdventOfCode25.Day1;
+namespace AdventOfCode25;
 
 public class Day1_Part2
 {

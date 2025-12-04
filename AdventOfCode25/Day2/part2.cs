@@ -3,7 +3,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.IO.Pipelines;
 
-namespace AdventOfCode25.Day1;
+namespace AdventOfCode25;
 
 public class Day2_Part2
 {
