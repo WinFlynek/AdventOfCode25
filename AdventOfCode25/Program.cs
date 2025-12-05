@@ -9,7 +9,10 @@ internal class Program
         //Day2_Part1.Part1();
         //Day2_Part2.Part2();
         //Day3_Part1.Part1();
-        Day3_Part2.Part2();
-        Day3_Part2_WTF.Part2();
+        //Day3_Part2.Part2();
+        //Day4_Part1.Part1();
+
+        //Day5_Part1.Part1();
+        Day5_Part2.Part2();
     }
 }
