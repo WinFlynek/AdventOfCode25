@@ -13,6 +13,8 @@ internal class Program
         //Day4_Part1.Part1();
 
         //Day5_Part1.Part1();
-        Day6_Part2.Part2();
+        //Day6_Part2.Part2();
+        //Day7_Part1.Part1();
+        Day7_Part2.Part2();
     }
 }
