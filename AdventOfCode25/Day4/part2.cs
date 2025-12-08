@@ -1,70 +1,172 @@
-﻿
-using System.IO.Pipelines;
+﻿using System.IO.Pipelines;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
-namespace AdventOfCode25;
-
-public class Day4_Part2
+namespace AdventOfCode25
 {
-public static void Part2()
-{
-    string filePath = @"C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\Day3\puzzleInput.txt";
-    var lines = GetInputFromFile(filePath);
-    long result = 0;
-    int numberOfBatteries = 12;
-    List<string> maxDigitsString = new List<string>();
-    foreach (string line in lines)
+    public class Day4_Part2
     {
-        List<int> maxDigits = new List<int>();
-        int startIndex = 0;
-
-        for (int battery = 0; battery < numberOfBatteries; battery++)
+        public static void Part2()
         {
-            int remainingBatteries = numberOfBatteries - battery - 1;
+            string filePath = @"C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\Day4\puzzleInput.txt";
+            List<string> lines = GetInputFromFile(filePath);
+            int result = 0;
+            int maxDistance = 1; // number of characters to check downward
 
-            // compute sliding window end
-            int endIndex = line.Length - remainingBatteries;
-
-            int bestDigit = -1;
-            int bestIndex = startIndex;
-
-            // scan window
-            for (int i = startIndex; i < endIndex; i++)
+            int numRows = lines.Count;
+            bool loop = true;
+            while (loop)
             {
-                int digit = line[i] - '0';
-                if (digit > bestDigit)
+                for (int line = 0; line < lines.Count; line++)
                 {
-                    bestDigit = digit;
-                    bestIndex = i;
+                    char[] chars = lines[line].ToCharArray();
+                    for (int charIndexInLine = 0; charIndexInLine < lines[line].Length; charIndexInLine++)
+                    {
+                        char charValue = chars[charIndexInLine];
+                        int count = 0;
+                        if (charValue == '@')
+                        {
+                            //Verify right
+                            if (chars.Length - charIndexInLine > maxDistance)
+                            {
+                                char charRightValue = lines[line][charIndexInLine + maxDistance];
+                                if (verifyValue(charRightValue))
+                                {
+                                    count++;
+                                }
+                            }
+                            //Verify Left
+                            if (charIndexInLine - maxDistance >= 0)
+                            {
+                                char charRightValue = lines[line][charIndexInLine - maxDistance];
+                                if (verifyValue(charRightValue))
+                                {
+                                    count++;
+                                }
+                            }
+                            //Verify Down
+                            if (line + maxDistance < numRows)
+                            {
+                                char charDownValue = lines[line + maxDistance][charIndexInLine];
+                                if (verifyValue(charDownValue))
+                                {
+                                    count++;
+                                }
+                            }
+                            // Verify Up
+                            if (line - maxDistance >= 0)
+                            {
+                                char charUpValue = lines[line - maxDistance][charIndexInLine];
+
+                                if (verifyValue(charUpValue))
+                                {
+                                    count++;
+                                }
+                            }
+                            // Verify Down-Right (↘)
+                            if (line + maxDistance <= numRows - 1 && charIndexInLine + maxDistance <= chars.Length - 1)
+                            {
+                                char c = lines[line + maxDistance][charIndexInLine + maxDistance];
+                                if (verifyValue(c))
+                                {
+                                    count++;
+                                }
+                            }
+                            // Verify Down-Left (↙)
+                            if (line + maxDistance <= numRows - 1 && charIndexInLine - maxDistance >= 0)
+                            {
+                                char c = lines[line + maxDistance][charIndexInLine - maxDistance];
+                                if (verifyValue(c))
+                                {
+                                    count++;
+                                }
+                            }
+                            // Verify Up-Right (↗)
+                            if (line - maxDistance >= 0 && charIndexInLine + maxDistance <= chars.Length - 1)
+                            {
+                                char c = lines[line - maxDistance][charIndexInLine + maxDistance];
+                                if (verifyValue(c))
+                                {
+                                    count++;
+                                }
+                            }
+                            // Verify Up-Left (↖)
+                            if (line - maxDistance >= 0 && charIndexInLine - maxDistance >= 0)
+                            {
+                                char c = lines[line - maxDistance][charIndexInLine - maxDistance];
+                                if (verifyValue(c))
+                                {
+                                    count++;
+                                }
+                            }
+                            //Console.WriteLine(count);
+                            if (count < 4)
+                            {
+                                //result++;
+                                chars[charIndexInLine] = 'x';
+                            }
+                        }
+                    }
+                    // Save changes back to line
+                    lines[line] = new string(chars);
+                }
+
+                int numberOfX = lines.Sum(line => line.Count(c => c == 'x'));
+                result += numberOfX;
+                if (numberOfX > 1)
+                {
+                    for (int i = 0; i < lines.Count; i++)
+                    {
+                        lines[i] = lines[i].Replace('x', '.');
+                    }
+                }
+                else
+                {
+                    List<string> oldLines = new List<string>(lines);
+                    for (int i = 0; i < lines.Count; i++)
+                    {
+                        lines[i] = lines[i].Replace('x', '.');
+                    }
+                    //Ugly comparing two list :D
+                    bool same = oldLines.SequenceEqual(lines);
+                    loop = !same;
                 }
             }
 
-            maxDigits.Add(bestDigit);
+            //Print modified lines
+            // foreach (var modifiedLine in lines)
+            // {
+            //     Console.WriteLine(modifiedLine);
+            // }
 
-            // next window starts AFTER best digit
-            startIndex = bestIndex + 1;
+            Console.WriteLine($"Day4_Part2: {result}");
         }
-        //Console.WriteLine(string.Join("", maxDigits));
-        maxDigitsString.Add(string.Join("", maxDigits));
-    }
-    foreach (string digit in maxDigitsString)
+
+        static bool verifyValue(char charCheck)
         {
-            result += long.Parse(digit);
+            bool changeChar = false;
+            if (charCheck == '@' || charCheck == 'x')
+            {
+                changeChar = true;
+            }
+            else
+            {
+                changeChar = false;
+            }
+            return changeChar;
         }
-        Console.WriteLine(result);
-}
 
-
-    static string[] GetInputFromFile(string filePath)
+        static List<string> GetInputFromFile(string filePath)
         {
             var lines = new List<string>();
 
             foreach (string line in File.ReadLines(filePath))
             {
-                string trimmRow = line.Trim();
-
-                lines.Add(trimmRow);
+                lines.Add(line.Trim());
             }
 
-            return lines.ToArray();
+            return lines;
         }
+    }
 }
