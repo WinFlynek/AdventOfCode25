@@ -16,5 +16,9 @@ internal class Program
         //Day6_Part2.Part2();
         //Day7_Part1.Part1();
         //Day7_Part2.Part2();
+        
+        
+        
+        Day9_Part1.Part1();
     }
 }
