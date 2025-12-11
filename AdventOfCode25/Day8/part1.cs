@@ -6,34 +6,54 @@ namespace AdventOfCode25
 {
     public class Day8_Part1
     {
+        public record DistanceEntry(double Distance, int[] A, int[] B);
+
         public static void Part1()
         {
             string filePath = @"C:\Users\michal.skocik\source\repos\AdventOfCode25\AdventOfCode25\Day8\puzzleInputTest.txt";
              List<int[]> points = GetInputFromFile(filePath);
+            List<DistanceEntry> allDistances = new List<DistanceEntry>();
+            List<HashSet<int>> circuits = new List<HashSet<int>>();
 
-        double bestDistance = double.MaxValue;
-        int[] bestA = null!;
-        int[] bestB = null!;
-        int[] c = points[0];
 
-        for (int i = 0; i < points.Count; i++)
+double bestDistance = double.MaxValue;
+int[] bestA = null!;
+int[] bestB = null!;
+int[] c = points[0];
+
+for (int i = 0; i < points.Count; i++)
+{
+    for (int j = i + 1; j < points.Count; j++)
+    {
+        double d = Distance3D(points[i], points[j]);
+
+        allDistances.Add(new DistanceEntry(d, points[i], points[j]));
+
+        if (d < bestDistance)
         {
-            for (int j = i + 1; j < points.Count; j++)
-            {
-                double d = Distance3D(points[i], points[j]);
-
-                if (d < bestDistance)
-                {
-                    bestDistance = d;
-                    bestA = points[i];
-                    bestB = points[j];
-                }
-            }
+            bestDistance = d;
+            bestA = points[i];
+            bestB = points[j];
         }
-        Console.WriteLine(IsPointBetween(bestA, bestB,c));
-        Console.WriteLine($"Closest distance = {bestDistance}");
-        Console.WriteLine($"Point A = [{bestA[0]}, {bestA[1]}, {bestA[2]}]");
-        Console.WriteLine($"Point B = [{bestB[0]}, {bestB[1]}, {bestB[2]}]");
+    }
+}
+
+// sort
+var sortedDistances = allDistances.OrderBy(x => x.Distance).ToList();
+
+
+
+// sample output
+foreach (var entry in sortedDistances)
+{
+    Console.WriteLine(
+        $"d={entry.Distance:F3} | A=[{entry.A[0]}, {entry.A[1]}, {entry.A[2]}] | B=[{entry.B[0]}, {entry.B[1]}, {entry.B[2]}]");
+}
+
+        // Console.WriteLine(IsPointBetween(bestA, bestB,c));
+        // Console.WriteLine($"Closest distance = {bestDistance}");
+        // Console.WriteLine($"Point A = [{bestA[0]}, {bestA[1]}, {bestA[2]}]");
+        // Console.WriteLine($"Point B = [{bestB[0]}, {bestB[1]}, {bestB[2]}]");
     }
 
     //Fist attemt
